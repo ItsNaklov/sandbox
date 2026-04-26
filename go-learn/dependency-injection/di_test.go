@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"testing"
 )
 
@@ -18,8 +17,4 @@ func TestGreet(t *testing.T) {
 
 	}
 
-}
-
-func Greet(writer *bytes.Buffer, name string) {
-	fmt.Fprintf(writer, "Hello, %s", name)
 }
