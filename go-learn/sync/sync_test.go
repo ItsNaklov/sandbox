@@ -2,6 +2,10 @@ package main
 
 import "testing"
 
+type Counter struct {
+	value int
+}
+
 func TestCounter(t *testing.T) {
 	t.Run("incrementing the counter 3 times leaves it at 3", func(t *testing.T) {
 		counter := Counter{}
@@ -13,4 +17,12 @@ func TestCounter(t *testing.T) {
 			t.Errorf("got %d, want %d", counter.Value(), 3)
 		}
 	})
+}
+
+func (c *Counter) Inc() {
+	c.value++
+}
+
+func (c *Counter) Value() int {
+	return c.value
 }
