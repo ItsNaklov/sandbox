@@ -42,7 +42,7 @@ func TestServer(t *testing.T) {
 			t.Error("store was not told to cancel")
 		}
 	})
-
+	//SpyStore still geting error this need to be fixed somehow tutorial seems like not up to date.
 	data := "hello, world"
 	svr := Server(&SpyStore{data})
 
