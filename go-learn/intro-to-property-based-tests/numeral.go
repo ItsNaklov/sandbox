@@ -19,3 +19,5 @@ func ConvertToRoman(arabic int) string {
 
 	return result.String()
 }
+
+// TODO Refactor the code, testing worked everything passing. Repetition in loops. We have to change the break!
