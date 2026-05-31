@@ -1,3 +1,4 @@
+// Package clockface provides functionality for rendering clock faces.
 package clockface
 
 import (
