@@ -1,10 +1,10 @@
-package clockface
+package clockface_test
 
 import (
 	"testing"
 	"time"
 
-	"github.com/quii/learn-go-with-tests/math/v1/clockface"
+	clockface "sandboxtest.com/test/maths"
 )
 
 func TestSecondHandAtMidnight(t *testing.T) {
