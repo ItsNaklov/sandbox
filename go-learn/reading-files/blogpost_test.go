@@ -17,3 +17,5 @@ func TestNewBlogPosts(t *testing.T) {
 		t.Errorf("got %d posts, wanted %d posts", len(posts), len(fs))
 	}
 }
+
+// Make sure the read the beginning again to complete.
