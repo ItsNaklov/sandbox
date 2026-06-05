@@ -3,8 +3,6 @@ package blogpost_test
 import (
 	"testing"
 	"testing/fstest"
-
-	blogposts "sandboxtest.com/test"
 )
 
 func TestNewBlogPosts(t *testing.T) {
