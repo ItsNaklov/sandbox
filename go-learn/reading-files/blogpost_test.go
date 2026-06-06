@@ -18,4 +18,4 @@ func TestNewBlogPosts(t *testing.T) {
 	}
 }
 
-// Make sure the read the beginning again to complete.
+// read from beginning again.
