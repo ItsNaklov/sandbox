@@ -19,3 +19,5 @@ func TestNewBlogPosts(t *testing.T) {
 }
 
 // read from beginning, make sure to understand.
+//
+// Keep things simple.
