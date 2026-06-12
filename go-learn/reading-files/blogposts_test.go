@@ -1,8 +1,10 @@
-package blogpost_test
+package blogposts_test
 
 import (
 	"testing"
 	"testing/fstest"
+
+	blogposts "github.com/ItsNaklov/sandbox"
 )
 
 func TestNewBlogPosts(t *testing.T) {
