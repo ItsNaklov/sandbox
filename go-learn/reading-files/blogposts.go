@@ -1,3 +1,4 @@
+// This is a package comment, as recommended
 package blogposts
 
 import "testing/fstest"
