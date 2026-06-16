@@ -1,12 +1,28 @@
 // Package blogposts comment, as recommended
 package blogposts
 
-import "testing/fstest"
+import (
+	"errors"
+	"io/fs"
+)
 
-type Post struct{}
+type (
+	Post          struct{}
+	StubFailingFS struct{}
+)
 
-func NewPostsFromFS(fileSystem fstest.MapFS) []Post {
-	return []Post{{}, {}}
+func (s StubFailingFS) Open(name string) (fs.File, error) {
+	return nil, errors.New("oh no, i always fail")
 }
 
-// TODO write the refactor change the func
+func NewPostsFromFS(fileSystem fs.FS) ([]Post, error) {
+	dir, err := fs.ReadDir(fileSystem, ".")
+	if err != nil {
+		return nil, err
+	}
+	var posts []Post
+	for range dir {
+		posts = append(posts, Post{})
+	}
+	return posts, nil
+}
