@@ -49,3 +49,5 @@ func getPost(fileSystem fs.FS, f fs.DirEntry) (Post, error) {
 	post := Post{Title: string(postData)[7:]}
 	return post, nil
 }
+
+// TODO refactor the code and finish the capter ASAP!

@@ -8,10 +8,6 @@ import (
 	blogposts "sandboxtest.com/test/reading-files"
 )
 
-type Post struct {
-	Title string
-}
-
 func TestNewBlogPosts(t *testing.T) {
 	fs := fstest.MapFS{
 		"hello world.md":  {Data: []byte("Title: Post 1")},
