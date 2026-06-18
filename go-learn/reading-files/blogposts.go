@@ -3,15 +3,7 @@ package blogposts
 
 import (
 	"errors"
-	"io"
 	"io/fs"
-)
-
-type (
-	Post struct {
-		Title string
-	}
-	StubFailingFS struct{}
 )
 
 func (s StubFailingFS) Open(name string) (fs.File, error) {
@@ -41,14 +33,4 @@ func getPost(fileSystem fs.FS, fileName string) (Post, error) {
 	}
 	defer postFile.Close()
 	return newPost(postFile)
-}
-
-func newPost(postFile io.Reader) (Post, error) {
-	postData, err := io.ReadAll(postFile)
-	if err != nil {
-		return Post{}, err
-	}
-
-	post := Post{Title: string(postData)[7:]}
-	return post, nil
 }
