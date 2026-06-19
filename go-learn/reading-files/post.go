@@ -41,7 +41,7 @@ func newPost(postBody io.Reader) (Post, error) {
 }
 
 func readBody(scanner *bufio.Scanner) string {
-	scanner.Scan() // ignore a line
+	scanner.Scan() // ignore a line?
 	buf := bytes.Buffer{}
 	for scanner.Scan() {
 		fmt.Fprintln(&buf, scanner.Text())
