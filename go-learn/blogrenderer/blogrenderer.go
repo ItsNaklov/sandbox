@@ -2,7 +2,8 @@
 package blogrenderer
 
 import (
-	"fmt"
+	"embed"
+	"html/template"
 	"io"
 )
 
@@ -11,10 +12,18 @@ type Post struct {
 	Tags                     []string
 }
 
-func Render(w io.Writer, p Post) error {
-	_, err := fmt.Fprintf(w, "<h1>%s</h1>", p.Title)
-	return err
-}
+//go:embed "templates/*"
+var postTemplates embed.FS
 
-// TODOs: 1. Refactor testing file add t.Run
-// 2 follow the tutorial carefully make sure to understand everything.
+func Render(w io.Writer, p Post) error {
+	templ, err := template.ParseFS(postTemplates, "templates/*.gohtml")
+	if err != nil {
+		return err
+	}
+
+	if err := templ.Execute(w, p); err != nil {
+		return err
+	}
+
+	return nil
+}
