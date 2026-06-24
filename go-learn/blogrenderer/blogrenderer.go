@@ -12,6 +12,8 @@ type Post struct {
 	Tags                     []string
 }
 
+// Package embed provides access to files embedded in the running Go program.
+//
 //go:embed "templates/*"
 var postTemplates embed.FS
 
