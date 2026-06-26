@@ -2,9 +2,12 @@
 package blogrenderer
 
 import (
+	"bytes"
 	"embed"
 	"html/template"
 	"io"
+
+	"github.com/yuin/goldmark"
 )
 
 type Post struct {
@@ -41,7 +44,24 @@ func Render(w io.Writer, p Post) error {
 		return err
 	}
 
-	if err := templ.ExecuteTemplate(w, "blog.gohtml", p); err != nil {
+	var body bytes.Buffer
+	if err := goldmark.Convert([]byte(p.Body), &body); err != nil {
+		return err
+	}
+
+	view := struct {
+		Title       string
+		Description string
+		Body        template.HTML
+		Tags        []string
+	}{
+		Title:       p.Title,
+		Description: p.Description,
+		Body:        template.HTML(body.String()),
+		Tags:        p.Tags,
+	}
+
+	if err := templ.ExecuteTemplate(w, "blog.gohtml", view); err != nil {
 		return err
 	}
 

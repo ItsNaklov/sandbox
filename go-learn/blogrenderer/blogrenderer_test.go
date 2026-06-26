@@ -12,7 +12,7 @@ import (
 func TestRender(t *testing.T) {
 	aPost := blogrenderer.Post{
 		Title:       "hello world",
-		Body:        "This is a post",
+		Body:        "# Hello\n\nThis is **bold**.",
 		Description: "This is a description",
 		Tags:        []string{"go", "tdd"},
 	}
