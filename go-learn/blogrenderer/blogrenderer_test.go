@@ -6,13 +6,14 @@ import (
 	"testing"
 
 	approvals "github.com/approvals/go-approval-tests"
-	"sandboxtest.com/test/blogrenderer"
+	"github.com/quii/learn-go-with-tests/blogrenderer"
 )
 
 func TestRender(t *testing.T) {
 	aPost := blogrenderer.Post{
-		Title:       "hello world",
-		Body:        "# Hello\n\nThis is **bold**.",
+		Title: "hello world",
+		Body: `# First recipe!
+Welcome to my **amazing blog**. I am going to write about my family recipes, and make sure I write a long, irrelevant and boring story about my family before you get to the actual instructions.`,
 		Description: "This is a description",
 		Tags:        []string{"go", "tdd"},
 	}
@@ -31,6 +32,7 @@ func TestRender(t *testing.T) {
 
 		approvals.VerifyString(t, buf.String())
 	})
+
 	t.Run("it renders an index of posts", func(t *testing.T) {
 		buf := bytes.Buffer{}
 		posts := []blogrenderer.Post{{Title: "Hello World"}, {Title: "Hello World 2"}}
@@ -39,12 +41,7 @@ func TestRender(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		got := buf.String()
-		want := `<ol><li><a href="/post/hello-world">Hello World</a></li><li><a href="/post/hello-world-2">Hello World 2</a></li></ol>`
-
-		if got != want {
-			t.Errorf("got %q want %q", got, want)
-		}
+		approvals.VerifyString(t, buf.String())
 	})
 }
 

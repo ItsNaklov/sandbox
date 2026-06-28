@@ -1,70 +1,54 @@
-// Package blogrenderer asking me to write a comment find it annoying for some reason
+// Package blogrenderer asking me package blogrenderer
 package blogrenderer
 
 import (
-	"bytes"
 	"embed"
 	"html/template"
 	"io"
 
-	"github.com/yuin/goldmark"
+	"github.com/gomarkdown/markdown"
+	"github.com/gomarkdown/markdown/parser"
 )
 
-type Post struct {
-	Title, Description, Body string
-	Tags                     []string
-}
+//go:embed "templates/*"
+var postTemplates embed.FS
 
+// PostRenderer renders data into HTML
 type PostRenderer struct {
-	templ *template.Template
+	templ    *template.Template
+	mdParser *parser.Parser
 }
 
+// NewPostRenderer creates a new PostRenderer
 func NewPostRenderer() (*PostRenderer, error) {
 	templ, err := template.ParseFS(postTemplates, "templates/*.gohtml")
 	if err != nil {
 		return nil, err
 	}
-	return &PostRenderer{templ: templ}, nil
+
+	extensions := parser.CommonExtensions | parser.AutoHeadingIDs
+	parser := parser.NewWithExtensions(extensions)
+
+	return &PostRenderer{templ: templ, mdParser: parser}, nil
 }
 
+// Render renders post into HTML
 func (r *PostRenderer) Render(w io.Writer, p Post) error {
-	if err := r.templ.ExecuteTemplate(w, "blog.gohtml", p); err != nil {
-		return err
-	}
-	return nil
+	return r.templ.ExecuteTemplate(w, "blog.gohtml", newPostVM(p, r))
 }
 
-// Package embed provides access to files embedded in the running Go program.
-//
-//go:embed "templates/*"
-var postTemplates embed.FS
+// RenderIndex creates an HTML index page given a collection of posts
+func (r *PostRenderer) RenderIndex(w io.Writer, posts []Post) error {
+	return r.templ.ExecuteTemplate(w, "index.gohtml", posts)
+}
 
-func Render(w io.Writer, p Post) error {
-	templ, err := template.ParseFS(postTemplates, "templates/*.gohtml")
-	if err != nil {
-		return err
-	}
+type postViewModel struct {
+	Post
+	HTMLBody template.HTML
+}
 
-	var body bytes.Buffer
-	if err := goldmark.Convert([]byte(p.Body), &body); err != nil {
-		return err
-	}
-
-	view := struct {
-		Title       string
-		Description string
-		Body        template.HTML
-		Tags        []string
-	}{
-		Title:       p.Title,
-		Description: p.Description,
-		Body:        template.HTML(body.String()),
-		Tags:        p.Tags,
-	}
-
-	if err := templ.ExecuteTemplate(w, "blog.gohtml", view); err != nil {
-		return err
-	}
-
-	return nil
+func newPostVM(p Post, r *PostRenderer) postViewModel {
+	vm := postViewModel{Post: p}
+	vm.HTMLBody = template.HTML(markdown.ToHTML([]byte(p.Body), r.mdParser, nil))
+	return vm
 }

@@ -1,4 +1,8 @@
 github.com/approvals/go-approval-tests v1.11.0 h1:JV4fhYRCsBYPx1qoAJElxPu8AolSNyy8x3vzALPtj8E=
 github.com/approvals/go-approval-tests v1.11.0/go.mod h1:3HKg6haD0Wg6p1SiA8/xHWg/xu4qnsB73ocJoo6zNy8=
+github.com/gomarkdown/markdown v0.0.0-20260614204949-e08cff860f76 h1:Ltt9ldIaSYEsjA7sPY2c8r9dOmnKM1vlzhh3dxlhBHM=
+github.com/gomarkdown/markdown v0.0.0-20260614204949-e08cff860f76/go.mod h1:JDGcbDT52eL4fju3sZ4TeHGsQwhG9nbDV21aMyhwPoA=
+github.com/quii/learn-go-with-tests v0.0.0-20260509070331-dc00c650f666 h1:MfD5B0IB66j+Jtm1xY2KoRrQrvYKP+MntaV2LCjTIY0=
+github.com/quii/learn-go-with-tests v0.0.0-20260509070331-dc00c650f666/go.mod h1:rUhpcyi1ujFfC9dS6nFdFX2pQrj9Jm9fZ8KRtB9P04w=
 github.com/yuin/goldmark v1.8.2 h1:kEGpgqJXdgbkhcOgBxkC0X0PmoPG1ZyoZ117rDVp4zE=
 github.com/yuin/goldmark v1.8.2/go.mod h1:ip/1k0VRfGynBgxOz0yCqHrbZXhcjxyuS66Brc7iBKg=
