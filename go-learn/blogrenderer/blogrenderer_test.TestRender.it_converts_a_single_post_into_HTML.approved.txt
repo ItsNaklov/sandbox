@@ -1,4 +1,4 @@
-<h1>hello world</h1>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +19,24 @@
 </nav>
 <main>
 
+
 <h1>hello world</h1>
 
 <p>This is a description</p>
 
-Tags: <ul><li>go</li><li>tdd</li></ul>
+# Hello
+
+This is **bold**.
+
+Tags:
+<ul>
+
+    <li>go</li>
+
+    <li>tdd</li>
+
+</ul>
+
 
 </main>
 <footer>
@@ -34,4 +47,4 @@ Tags: <ul><li>go</li><li>tdd</li></ul>
 </footer>
 </body>
 </html>
-/ul>
+
