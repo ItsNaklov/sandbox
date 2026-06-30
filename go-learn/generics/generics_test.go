@@ -14,6 +14,23 @@ func TestAssertFunctions(t *testing.T) {
 	})
 
 	// AssertEqual(t, 1, "1") // uncomment to see the error
+	t.Run("interface stack dx is horrid", func(t *testing.T) {
+		myStackOfInts := new(StackOfInts)
+
+		myStackOfInts.Push(1)
+		myStackOfInts.Push(2)
+		firstNum, _ := myStackOfInts.Pop()
+		secondNum, _ := myStackOfInts.Pop()
+
+		// get our ints from out interface{}
+		reallyFirstNum, ok := firstNum.(int)
+		AssertTrue(t, ok) // need to check we definitely got an int out of the interface{}
+
+		reallySecondNum, ok := secondNum.(int)
+		AssertTrue(t, ok) // and again!
+
+		AssertEqual(t, reallyFirstNum+reallySecondNum, 3)
+	})
 }
 
 func AssertEqual[T comparable](t *testing.T, got, want T) {
