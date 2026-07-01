@@ -3,7 +3,7 @@ package main
 import "testing"
 
 func TestBadBank(t *testing.T) {
-	transactions := []Transactions{
+	transactions := []Transaction{
 		{
 			From: "Chris",
 			To:   "Riya",
