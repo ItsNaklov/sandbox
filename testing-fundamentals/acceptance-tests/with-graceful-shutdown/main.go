@@ -16,6 +16,5 @@ func main() {
 		// this will typically happen if our responses aren't written before the ctx deadline, not much can be done
 		log.Fatalf("uh oh, didn't shutdown gracefully, some responses may have been lost %v", err)
 	}
-	// hopefully, you'll always see this instead
 	log.Println("shutdown gracefully! all responses were sent")
 }
