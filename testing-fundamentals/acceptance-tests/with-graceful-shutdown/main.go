@@ -23,3 +23,5 @@ func main() {
 	// hopefully, you'll always see this instead
 	log.Println("shutdown gracefully! all responses were sent")
 }
+
+// I know that this code is incomplete it is on purpose because I need to move forwrad quicker.
