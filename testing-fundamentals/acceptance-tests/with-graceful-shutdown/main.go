@@ -4,6 +4,8 @@ import (
 	"context"
 	"log"
 	"net/http"
+
+	gracefulshutdown "testing-fundamentals/acceptance-tests"
 )
 
 func main() {
@@ -15,7 +17,7 @@ func main() {
 
 	if err := server.ListenAndServe(ctx); err != nil {
 		// this will typically happen if our responses aren't written before the ctx deadline, not much can be done
-		log.Fatalf("uh oh, didn't shutdown gracefully, some responses may have been lost %v", err)
+		log.Fatalf("uh oh, didnt shutdown gracefully, some responses may have been lost %v", err)
 	}
 
 	// hopefully, you'll always see this instead

@@ -5,6 +5,7 @@ import (
 	"time"
 
 	acceptancetests "testing-fundamentals/acceptance-tests"
+	"testing-fundamentals/assert"
 )
 
 const (
