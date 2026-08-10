@@ -16,9 +16,8 @@ func TestGreeterServer(t *testing.T) {
 
 	req := testcontainers.ContainerRequest{
 		FromDockerfile: testcontainers.FromDockerfile{
-			Context:    "../../.",
-			Dockerfile: "./cmd/httpserver/Dockerfile",
-			// set to false if you want less spam, but this is helpful if you're having troubles
+			Context:       "../../.",
+			Dockerfile:    "./cmd/httpserver/Dockerfile",
 			PrintBuildLog: true,
 		},
 		ExposedPorts: []string{"8080:8080"},
