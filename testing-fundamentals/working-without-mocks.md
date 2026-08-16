@@ -9,4 +9,4 @@ In this chapter delves into the world of test doubles and explores how they infl
 * Fakes and contacts give us a more sustainable method for creating test doubles with validated assumptions and better reuse than the alternatives.
 
 * Fakes and contracts allow developers to test their systems with more realistic scenarios, improve local development experience with faster and more accurate feedback loops, and manage the complexity of evolving dependencies.
-* As a project grows, though, these kinds of thes doubles can become a maintenance burden, and we should instead look to other design ideas to keep our system easy to reason and test.
+* When a project grows, though, these kinds of thes doubles can become a maintenance burden, and we should instead look to other design ideas to keep our system easy to reason and test.
